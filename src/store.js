@@ -6,7 +6,6 @@ export default {
 
     authenticateUser(userData) {
         this.state.isAuthenticated = true;
-
         this.state.currentUser = userData;
     },
 

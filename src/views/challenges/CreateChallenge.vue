@@ -37,7 +37,7 @@
             </CForm>
           </CCardBody>
           <CCardFooter>
-            <CButton type="submit" size="sm" color="primary">
+            <CButton type="submit" size="sm" color="primary" v-on:click="createChallange">
               <CIcon name="cil-check-circle" />Submit
             </CButton>
           </CCardFooter>
@@ -48,6 +48,9 @@
 </template>
 
 <script>
+import challengesApi from '@/services/api/challenges'
+import store from '@/store'
+
 export default {
   name: "CreateChallenge",
   data() {
@@ -55,13 +58,21 @@ export default {
       form: {
         title: '',
         endDate: '',
-        description: ''
+        description: '',
+        author: store.state.currentUser.id,
+        isActive: true
       }
     };
   },
   methods: {
     isFilled(val) {
       return val !== '';
+    },
+    createChallange: function() {
+      let router = this.$router;
+      challengesApi.createChallange(this.form).then(challenges =>{
+        router.push({path: '/challenges'});
+      })
     }
   }
 };

@@ -1,12 +1,18 @@
 import axios from 'axios';
 
 export default {
-    getChallenges(showDeleted) {
+    async getChallenges(showDeleted) {
         showDeleted = showDeleted === undefined ? false : showDeleted;
 
-        return axios.get('/challenges', { showDeleted })
-            .then(response => {
-                return response.data;
-            });
+        const response = await axios.get('/challenges', { showDeleted });
+        return response.data;
+    },
+    async createChallange(challange) {
+        const response = await axios({
+            method: 'post',
+            url: '/challenges',
+            data: challange
+        });
+        return response.data;
     }
 };

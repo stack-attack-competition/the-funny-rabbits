@@ -1,18 +1,20 @@
 import axios from 'axios';
 
 export default {
-    register(userDetails) {
-        return axios({
+    async register(userDetails) {
+        const response = await axios({
             method: 'post',
             url: '/auth/register',
             data: userDetails
-          }).then(response => { return response} );
+        });
+        return response.data;
     },
-    login(userDetails) {
-        return axios({
+    async login(userDetails) {
+        const response = await axios({
             method: 'post',
             url: '/auth/login',
             data: userDetails
-          }).then(response => { return response} );
+        });
+        return response.data;
     }
 };

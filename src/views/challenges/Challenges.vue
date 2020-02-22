@@ -2,7 +2,7 @@
   <div>
     <CRow>
       <CCol :lg="{ size: 8, offset: 2 }">
-        <CCard>
+        <CCard  v-if="selectedChallenge == null">
           <CCardHeader>
             <strong>Challenges</strong>
           </CCardHeader>
@@ -18,9 +18,12 @@
                     <img class="profilePicture" :src="challenge.userPictureUrl" />
                   </div>
                   <div class="mr-auto w-100 pl-3">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">{{ challenge.title }}</h5>
-                      <small>Ends: {{ challenge.endDate }}</small>
+                    <div class="d-flex w-100 justify-content-end align-items-center">
+                      <h5 class="mb-1 mr-auto">{{ challenge.title }}</h5>
+                      <small class="pr-3">Ends: {{ challenge.endDate }}</small>
+                      <CLink class="card-header-action btn-maximize" @click="viewChallenge(challenge)">
+                        <CButton type="submit" size="sm" color="primary">View</CButton>
+                      </CLink>
                     </div>
                     <p
                       class="mb-1"
@@ -31,6 +34,7 @@
             </CListGroup>
           </CCardBody>
         </CCard>
+        <ChallengeDetails :challenge="selectedChallenge" v-if="selectedChallenge !== null" v-on:close="closeChallenge()"></ChallengeDetails>
       </CCol>
     </CRow>
   </div>
@@ -40,33 +44,47 @@
 import CTableWrapper from "../base/Table.vue";
 import challengesApi from "@/services/api/challenges";
 import usersApi from "@/services/api/users";
+import ChallengeDetails from './ChallengeDetails.vue'
 
 export default {
   name: "Challenges",
-  components: { CTableWrapper },
+  components: { CTableWrapper, ChallengeDetails },
   data() {
     return {
-      challenges: []
+      challenges: [],
+      selectedChallenge: null
     };
   },
   mounted() {
     challengesApi.getChallenges().then(challenges => {
-      let userApiCalls = [];
-      Promise.all(challenges.map(challenge => usersApi.getUserById(challenge.author))).then(users => {
+      Promise.all(
+        challenges.map(challenge => usersApi.getUserById(challenge.author))
+      ).then(users => {
         challenges.forEach(challenge => {
-          challenge.userPictureUrl = users.find(user => user.id === challenge.author).pictureUrl;
+          challenge.show = false;
+          challenge.userPictureUrl = users.find(
+            user => user.id === challenge.author
+          ).pictureUrl;
           console.log(challenge.userPictureUrl);
         });
         this.challenges = challenges.reverse();
       });
     });
+  },
+  methods: {
+    viewChallenge(challenge) {
+      this.selectedChallenge = challenge;
+    },
+    closeChallenge() {
+      this.selectedChallenge = null;
+    }
   }
 };
 </script>
 
 <style scoped>
-  .profilePicture {
-    width: 100px;
-    max-height: 100px;
-  }
+.profilePicture {
+  width: 100px;
+  max-height: 100px;
+}
 </style>

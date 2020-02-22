@@ -76,8 +76,11 @@ export default {
   },
   methods: {
     login: function () {
-      auth.login(this.form);
-      store.authenticateUser(this.form);
+      let router = this.$router;
+      auth.login(this.form).then(response => {
+        store.authenticateUser(response);
+        router.push({path: '/'});
+      });
     },
     isEmailValid: function () {
       return this.form.email !== '';

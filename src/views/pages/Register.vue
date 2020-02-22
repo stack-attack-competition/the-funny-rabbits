@@ -91,8 +91,11 @@ export default {
   },
   methods: {
     register: function () {
-      auth.register(this.form);
-      store.authenticateUser(this.form);
+      let router = this.$router;
+      auth.register(this.form).then(response => {
+        store.authenticateUser(response);
+        router.push({path: '/'});
+      });
     },
     isFirstNameValid: function () {
       return this.form.firstName !== '';

@@ -9,6 +9,9 @@
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">Home</CHeaderNavLink>
       </CHeaderNavItem>
+      <CHeaderNavItem class="px-3"  v-if="isAuthenticated">
+        <CHeaderNavLink to="/my-challenges">My Challenges</CHeaderNavLink>
+      </CHeaderNavItem>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="px-3" v-if="isAuthenticated">

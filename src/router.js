@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const TheContainer = () => import('@/containers/TheContainer')
 
 const Challenges = () => import('@/views/challenges/Challenges')
+const MyChallenges = () => import('@/views/challenges/MyChallenges')
 const CreateChallenge = () => import('@/views/challenges/CreateChallenge')
 
 const Page404 = () => import('@/views/pages/Page404')
@@ -41,6 +42,11 @@ function configRoutes () {
           path: 'challenge/create',
           name: 'CreateChallenge',
           component: CreateChallenge
+        },
+        {
+          path: 'my-challenges',
+          name: 'MyChallenges',
+          component: MyChallenges
         },
         {
           path: 'users',

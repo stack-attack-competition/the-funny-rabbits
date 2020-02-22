@@ -1,6 +1,6 @@
 <template>
   <div class="c-app">
-    <TheSidebar/>
+    <TheSidebar  v-if="isAuthenticated"/>
     <div class="c-wrapper">
       <TheHeader/>
       <div class="c-body">
@@ -18,12 +18,18 @@
 </template>
 
 <script>
+import store from '../store'
 import TheSidebar from './TheSidebar'
 import TheHeader from './TheHeader'
 import TheFooter from './TheFooter'
 
 export default {
   name: 'TheContainer',
+  data() {
+    return {
+      isAuthenticated: store.state.isAuthenticated
+    }
+  },
   components: {
     TheSidebar,
     TheHeader,

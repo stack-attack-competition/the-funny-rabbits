@@ -27,7 +27,8 @@ import store from '../store'
 export default {
   name: 'TheHeaderDropdownAccount',
   data () {
-    return { 
+    return {
+      isAuthenticated: store.state.isAuthenticated,
       itemsCount: 42
     }
   },

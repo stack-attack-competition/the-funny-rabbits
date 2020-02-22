@@ -9,8 +9,11 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <CInput
-                  placeholder="Username"
-                  autocomplete="username email"
+                  placeholder="Email"
+                  autocomplete="email"
+                  v-model="form.email"
+                  invalid-feedback="Please provide your email address."
+                  :is-valid="isEmailValid"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
                 </CInput>
@@ -18,12 +21,15 @@
                   placeholder="Password"
                   type="password"
                   autocomplete="curent-password"
+                  v-model="form.password"
+                  invalid-feedback="Please provide your password."
+                  :is-valid="isPasswordValid"
                 >
                   <template #prepend-content><CIcon name="cil-lock-locked"/></template>
                 </CInput>
                 <CRow>
                   <CCol col="6">
-                    <CButton color="primary" class="px-4">Login</CButton>
+                    <CButton color="primary" class="px-4" v-on:click="login">Login</CButton>
                   </CCol>
                   <CCol col="6" class="text-right">
                     <CButton color="link" class="px-0">Forgot password?</CButton>
@@ -55,7 +61,28 @@
 </template>
 
 <script>
+import auth from '@/services/api/auth'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data() {
+    return {
+      form: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login: function () {
+      auth.login(this.form);
+    },
+    isEmailValid: function () {
+      return this.form.email !== '';
+    },
+    isPasswordValid: function () {
+      return this.form.password !== '';
+    }
+  }
 }
 </script>

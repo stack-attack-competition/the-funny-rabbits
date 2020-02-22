@@ -7,5 +7,12 @@ export default {
             url: '/auth/register',
             data: userDetails
           }).then(response => console.log(response));
+    },
+    login(userDetails) {
+        return axios({
+            method: 'post',
+            url: '/auth/login',
+            data: userDetails
+          }).then(response => console.log(response));
     }
 };

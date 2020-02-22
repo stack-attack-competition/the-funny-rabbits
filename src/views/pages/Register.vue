@@ -56,7 +56,6 @@
                 placeholder="Confirm password"
                 type="password"
                 autocomplete="new-password"
-                v-model="form.confirmPassword"
                 class="mb-4"
                 invalid-feedback="Please enter the same password here."
                 :is-valid="isConfirmPasswordValid"
@@ -89,9 +88,6 @@ export default {
       }
     }
   },
-  mounted() {
-    
-  },
   methods: {
     register: function () {
       console.log(this.form);
@@ -112,8 +108,8 @@ export default {
     isPasswordValid: function () {
       return this.form.password !== '';
     },
-    isConfirmPasswordValid: function () {
-      return this.form.confirmPassword !== '' && (this.form.confirmPassword == this.form.password);
+    isConfirmPasswordValid: function (confirmPassword) {
+      return confirmPassword !== '' && (confirmPassword == this.form.password);
     }
   }
 }

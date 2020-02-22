@@ -14,6 +14,7 @@
     "@coreui/utils": "^1.2.2",
     "@coreui/vue": "^3.0.0",
     "@coreui/vue-chartjs": "^1.0.3",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.5.0",
     "core-js": "^3.6.4",

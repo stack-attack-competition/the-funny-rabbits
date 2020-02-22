@@ -63,6 +63,9 @@
                 <template #prepend-content><CIcon name="cil-lock-locked"/></template>
               </CInput>
               <CButton color="success" block v-on:click="register">Create Account</CButton>
+              <CButton color="primary" block v-on:click="navigateToLogin">Login</CButton>
+              <CRow>
+            </CRow>
             </CForm>
           </CCardBody>
         </CCard>
@@ -96,6 +99,10 @@ export default {
         store.authenticateUser(response);
         router.push({path: '/'});
       });
+    },
+    navigateToLogin: function () {
+      let router = this.$router;
+      router.push({path: '/pages/login'});
     },
     isFirstNameValid: function () {
       return this.form.firstName !== '';

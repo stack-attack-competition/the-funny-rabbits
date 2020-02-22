@@ -50,6 +50,7 @@
             <CButton
               color="primary"
               class="active mt-3"
+              v-on:click="navigateToRegister"
             >
               Register Now!
             </CButton>
@@ -81,6 +82,10 @@ export default {
         store.authenticateUser(response);
         router.push({path: '/'});
       });
+    },
+    navigateToRegister: function () {
+      let router = this.$router;
+      router.push({path: '/pages/register'});
     },
     isEmailValid: function () {
       return this.form.email !== '';

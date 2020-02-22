@@ -1,18 +1,18 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router'
-import store from './store'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import CoreuiVue from '@coreui/vue'
+import { iconsSet as icons } from './assets/icons/icons.js'
 
-// Install BootstrapVue
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
-
-Vue.config.productionTip = false
+Vue.config.performance = true
+Vue.use(CoreuiVue)
 
 new Vue({
+  el: '#app',
   router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+  icons,
+  template: '<App/>',
+  components: {
+    App
+  },
+})

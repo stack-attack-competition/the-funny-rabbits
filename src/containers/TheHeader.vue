@@ -1,24 +1,10 @@
 <template>
-  <CHeader fixed with-subheader light>
-    <CToggler
-      v-if="isAuthenticated"
-      in-header
-      class="ml-3 d-lg-none"
-      v-c-emit-root-event:toggle-sidebar-mobile
-    />
-    <CToggler
-      v-if="isAuthenticated"
-      in-header
-      class="ml-3 d-md-down-none"
-      v-c-emit-root-event:toggle-sidebar
-    />
-    <CHeaderBrand
-      class="mx-auto d-lg-none"
-      src="img/brand/coreui-vue-logo.svg"
-      width="190"
-      height="46"
-      alt="CoreUI Logo"
-    />
+  <CHeader fixed with-subheader dark>
+    <CHeaderNav class="d-md-down-none">
+      <CHeaderNavItem class="px-3">
+        <img src="https://previews.123rf.com/images/nicescene/nicescene1712/nicescene171200058/92170966-rabbit-icon-symbol-head-logo-design-.jpg" height="30px" />
+      </CHeaderNavItem>
+    </CHeaderNav>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">Home</CHeaderNavLink>

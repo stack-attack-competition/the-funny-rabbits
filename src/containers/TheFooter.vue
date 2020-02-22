@@ -2,6 +2,8 @@
   <CFooter>
     <div>
       <span class="ml-1">&copy; 2020 The funny rabbits.</span>
+      <a href="#" target="_blank">Stack Attack</a>
+      <span class="ml-1">&copy; 2020 The Funny Rabbits - <small>Not Funny...</small>.</span>
     </div>
     <div class="ml-auto">
       <span class="mr-1">Powered by</span>

@@ -9,6 +9,13 @@
           <CCardBody>
             <CForm>
               <CInput
+                label="Profile picture URL"
+                horizontal
+                invalid-feedback="This field is required"
+                :is-valid="isFilled"
+                v-model="user.pictureUrl"
+              />
+              <CInput
                 label="First Name"
                 horizontal
                 invalid-feedback="This field is required"
@@ -22,7 +29,7 @@
                 :is-valid="isFilled"
                 v-model="user.lastName"
               />
-              <CTextarea
+              <CInput
                 label="Email"
                 horizontal
                 invalid-feedback="This field is required"
@@ -44,6 +51,7 @@
 
 <script>
 import store from '@/store'
+import usersApi from '@/services/api/users'
 
 export default {
   name: 'User',
@@ -60,7 +68,10 @@ export default {
       return val !== '';
     },
     saveProfile: function() {
-        
+        let router = this.$router;
+        usersApi.updateUserProfile(this.user).then(challenges =>{
+        router.push({path: '/'});
+      })
     }
   }
 }

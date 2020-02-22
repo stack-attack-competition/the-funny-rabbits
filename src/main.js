@@ -8,6 +8,8 @@ import axios from 'axios'
 Vue.config.performance = true
 Vue.use(CoreuiVue)
 
+axios.defaults.baseURL = 'https://stack-attack-bed.herokuapp.com/'
+
 new Vue({
   el: '#app',
   router,

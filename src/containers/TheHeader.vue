@@ -1,8 +1,13 @@
 <template>
   <CHeader fixed with-subheader dark>
     <CHeaderNav class="d-md-down-none">
-      <CHeaderNavItem class="px-3">
-        <img src="https://previews.123rf.com/images/nicescene/nicescene1712/nicescene171200058/92170966-rabbit-icon-symbol-head-logo-design-.jpg" height="30px" />
+      <CHeaderNavItem to="/" class="px-3">
+        <CHeaderNavLink to="/" exact>
+          <img
+            src="https://previews.123rf.com/images/nicescene/nicescene1712/nicescene171200058/92170966-rabbit-icon-symbol-head-logo-design-.jpg"
+            height="30px"
+          />
+        </CHeaderNavLink>
       </CHeaderNavItem>
     </CHeaderNav>
     <CHeaderNav class="d-md-down-none mr-auto">
@@ -16,15 +21,11 @@
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="px-3" v-if="isAuthenticated">
         <CHeaderNavLink to="/challenge/create" exact>
-          <CButton type="submit" size="sm" color="primary">
-            Create Challenge
-          </CButton>
+          <CButton type="submit" size="sm" color="primary">Create Challenge</CButton>
         </CHeaderNavLink>
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3" v-if="!isAuthenticated">
-        <CHeaderNavLink to="/pages/login" exact>
-            Sign In
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/pages/login" exact>Sign In</CHeaderNavLink>
       </CHeaderNavItem>
       <TheHeaderDropdownAccount v-if="isAuthenticated" />
     </CHeaderNav>

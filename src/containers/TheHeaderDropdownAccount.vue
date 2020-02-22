@@ -15,6 +15,9 @@
         </div>
       </CHeaderNavLink>
     </template>
+    <CDropdownItem @click="editProfile">
+      <CIcon name="cil-user" /> Edit Profile
+    </CDropdownItem>
     <CDropdownItem @click="signOut">
       <CIcon name="cil-lock-locked" /> Sign Out
     </CDropdownItem>
@@ -33,14 +36,20 @@ export default {
       itemsCount: 42
     }
   },
-  mounted() { console.log(store.state); },
+  mounted() { 
+
+  },
   methods: {
     signOut() {
       store.logOffUser();
       location.reload();
+    },
+    editProfile() {
+      let router = this.$router;
+      router.push({path: '/users/User'});
     }
   }
-}
+};
 </script>
 
 <style scoped>

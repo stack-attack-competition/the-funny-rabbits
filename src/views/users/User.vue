@@ -1,43 +1,66 @@
 <template>
-  <CRow>
-    <CCol col="12" lg="6">
-      <CCard>
-        <CCardHeader>
-          User id:  {{ $route.params.id }}
-        </CCardHeader>
-        <CCardBody>
-          <CDataTable
-            striped
-            small
-            fixed
-            :items="getUserData($route.params.id)"
-            :fields="$options.fields"
-          />
-        </CCardBody>
-        <CCardFooter>
-          <CButton color="primary" @click="goBack">Back</CButton>
-        </CCardFooter>
-      </CCard>
-    </CCol>
-  </CRow>
+  <div>
+    <CRow>
+      <CCol :md="{ size: '6', offset:'3' }">
+        <CCard>
+          <CCardHeader>
+            <strong>Profile Page</strong>
+          </CCardHeader>
+          <CCardBody>
+            <CForm>
+              <CInput
+                label="First Name"
+                horizontal
+                invalid-feedback="This field is required"
+                :is-valid="isFilled"
+                v-model="user.firstName"
+              />
+              <CInput
+                label="Last Name"
+                horizontal
+                invalid-feedback="This field is required"
+                :is-valid="isFilled"
+                v-model="user.lastName"
+              />
+              <CTextarea
+                label="Email"
+                horizontal
+                invalid-feedback="This field is required"
+                :is-valid="isFilled"
+                v-model="user.email"
+              />
+            </CForm>
+          </CCardBody>
+          <CCardFooter>
+            <CButton type="submit" size="sm" color="primary" v-on:click="saveProfile">
+              <CIcon name="cil-check-circle" />Save
+            </CButton>
+          </CCardFooter>
+        </CCard>
+      </CCol>
+    </CRow>
+  </div>
 </template>
 
 <script>
-import usersData from './UsersData'
+import store from '@/store'
+
 export default {
   name: 'User',
-  fields: [
-    { key: 'key', _style: 'width:150px' },
-    { key: 'value' , _style: 'width:150px;' }
-  ],
+  data() {
+    return {
+      user: {}
+    };
+  },
+  mounted() {
+    this.user = store.state.currentUser;
+  },
   methods: {
-    getUserData (id) {
-      const user = usersData.find((user, index) => index + 1 == id)
-      const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-      return userDetails.map(([key, value]) => { return { key, value } })
+    isFilled(val) {
+      return val !== '';
     },
-    goBack() {
-      this.$router.go(-1)
+    saveProfile: function() {
+        
     }
   }
 }

@@ -7,6 +7,7 @@
   >
     <template #toggler>
       <CHeaderNavLink>
+        <strong>Hello {{ firstName }}</strong>
         <div class="c-avatar">
           <img
             :src="pictureUrl"
@@ -33,6 +34,7 @@ export default {
     return {
       isAuthenticated: store.state.isAuthenticated,
       pictureUrl: store.state.currentUser.pictureUrl,
+      firstName: store.state.currentUser.firstName,
       itemsCount: 42
     }
   },

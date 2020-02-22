@@ -4,8 +4,8 @@ export default [
     _children: [
       {
         _name: 'CSidebarNavItem',
-        name: 'My Challenges',
-        to: '/dashboard',
+        name: 'Challenges',
+        to: '/challenges',
         icon: 'cil-speedometer'
       },
 

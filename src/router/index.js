@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+const Challenges = () => import('@/views/challenges/Challenges')
+
+
+
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
 
@@ -74,6 +79,14 @@ function configRoutes () {
       name: 'Home',
       component: TheContainer,
       children: [
+        {
+          path: 'challenges',
+          name: 'Challenges',
+          component: Challenges
+        },
+
+
+
         {
           path: 'dashboard',
           name: 'Dashboard',

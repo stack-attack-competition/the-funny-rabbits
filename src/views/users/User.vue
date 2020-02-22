@@ -70,7 +70,9 @@ export default {
     saveProfile: function() {
         let router = this.$router;
         usersApi.updateUserProfile(this.user).then(challenges =>{
-        router.push({path: '/'});
+          store.logOffUser(this.user);
+          store.authenticateUser(this.user);
+          router.push({path: '/'});
       })
     }
   }

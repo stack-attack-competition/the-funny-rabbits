@@ -73,6 +73,7 @@
 
 <script>
 import auth from '@/services/api/auth'
+import store from '@/store'
 
 export default {
   name: 'Register',
@@ -90,8 +91,8 @@ export default {
   },
   methods: {
     register: function () {
-      console.log(this.form);
       auth.register(this.form);
+      store.authenticateUser(this.form);
     },
     isFirstNameValid: function () {
       return this.form.firstName !== '';

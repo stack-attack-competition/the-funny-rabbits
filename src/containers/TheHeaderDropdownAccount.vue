@@ -37,6 +37,7 @@ export default {
   methods: {
     signOut() {
       store.logOffUser();
+      location.reload();
     }
   }
 }

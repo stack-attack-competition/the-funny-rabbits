@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 export default {
-    async register(userDetails) {
+    async getUserById(userId) {
         const response = await axios({
-            method: 'post',
-            url: '/auth/register',
-            data: userDetails
+            method: 'get',
+            url: '/users/' + userId
         });
         return response.data;
     }

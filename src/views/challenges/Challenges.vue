@@ -15,9 +15,9 @@
               >
                 <div class="d-flex w-100 justify-content-between">
                   <div>
-                    <img class="profilePicture" src="https://cdn0.iconfinder.com/data/icons/cat-avatar-filled/64/Cat_avatar_kitten-24-512.png" />
+                    <img class="profilePicture" :src="challenge.userPictureUrl" />
                   </div>
-                  <div>
+                  <div class="mr-auto w-100 pl-3">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1">{{ challenge.title }}</h5>
                       <small>Ends: {{ challenge.endDate }}</small>
@@ -39,6 +39,7 @@
 <script>
 import CTableWrapper from "../base/Table.vue";
 import challengesApi from "@/services/api/challenges";
+import usersApi from "@/services/api/users";
 
 export default {
   name: "Challenges",
@@ -50,14 +51,15 @@ export default {
   },
   mounted() {
     challengesApi.getChallenges().then(challenges => {
-      console.log(challenges);
-      this.challenges = challenges;
+      let userApiCalls = [];
+      Promise.all(challenges.map(challenge => usersApi.getUserById(challenge.author))).then(users => {
+        challenges.forEach(challenge => {
+          challenge.userPictureUrl = users.find(user => user.id === challenge.author).pictureUrl;
+          console.log(challenge.userPictureUrl);
+        });
+        this.challenges = challenges.reverse();
+      });
     });
-  },
-  methods: {
-    getChallenges() {
-      challengesApi.getChallenges();
-    }
   }
 };
 </script>

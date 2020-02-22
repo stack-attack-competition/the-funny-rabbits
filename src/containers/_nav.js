@@ -8,6 +8,12 @@ export default [
         to: '/challenges',
         icon: 'cil-speedometer'
       },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'CreateChallenge',
+        to: '/challenge/create',
+        icon: 'cil-speedometer'
+      },
 
 
 

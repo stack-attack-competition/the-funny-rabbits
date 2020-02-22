@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 
 const Challenges = () => import('@/views/challenges/Challenges')
+const CreateChallenge = () => import('@/views/challenges/CreateChallenge')
 
 
 
@@ -85,6 +86,11 @@ function configRoutes () {
           component: Challenges
         },
 
+        {
+          path: 'challenge/create',
+          name: 'CreateChallenge',
+          component: CreateChallenge
+        },
 
 
         {

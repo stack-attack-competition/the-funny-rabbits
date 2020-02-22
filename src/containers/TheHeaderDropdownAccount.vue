@@ -9,7 +9,7 @@
       <CHeaderNavLink>
         <div class="c-avatar">
           <img
-            src="img/avatars/6.jpg"
+            :src="pictureUrl"
             class="c-avatar-img "
           />
         </div>
@@ -29,9 +29,11 @@ export default {
   data () {
     return {
       isAuthenticated: store.state.isAuthenticated,
+      pictureUrl: store.state.currentUser.pictureUrl,
       itemsCount: 42
     }
   },
+  mounted() { console.log(store.state); },
   methods: {
     signOut() {
       store.logOffUser();

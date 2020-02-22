@@ -53,7 +53,8 @@ export default {
   name: "TheHeader",
   data() {
     return {
-      isAuthenticated: store.state.isAuthenticated
+      isAuthenticated: store.state.isAuthenticated,
+      currentUser: store.state.currentUser
     };
   },
   components: {
